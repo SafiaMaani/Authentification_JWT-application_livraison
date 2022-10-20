@@ -11,9 +11,13 @@ exports.register = async (req, res) => {
     image: req.body.image,
     verification_token: crypto.randomBytes(10).toString('hex')
   })
-  await clt.save()
+  try {
+    const createdClt = await clt.save()
+    res.send(createdClt)
+  } catch (err) {
+    res.status(400).send(err)
+  }
 
-  res.send('data was inserted')
 }
 exports.login = (req, res) => {
   res.send('Login page')
