@@ -6,6 +6,5 @@ function errorHandler(err, req, res, next) {
     message,
     status
   })
-
 }
 module.exports = errorHandler

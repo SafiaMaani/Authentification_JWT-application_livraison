@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const livreurSchema = mongoose.Schema({
+const UserModel = mongoose.Schema({
   first_name: {
     type: String,
     required: [true, "Please add your first name"],
@@ -24,18 +24,12 @@ const livreurSchema = mongoose.Schema({
     minlength: 6,
     trim: true,
   },
-  image: {
-    type: String,
-    default: "default.jpg",
-  },
   phoneNumber: {
     type: String,
-    required: true,
     match: /(\+212|0)([ \-_/]*)(\d[ \-_/]*){9}/,
   },
   adresse: {
     type: String,
-    required: true,
   },
   verified: {
     type: Boolean,
@@ -53,4 +47,4 @@ const livreurSchema = mongoose.Schema({
   timestamps: true,
 })
 
-module.exports = mongoose.model('livreur', livreurSchema);
+module.exports = mongoose.model('user', UserModel);
