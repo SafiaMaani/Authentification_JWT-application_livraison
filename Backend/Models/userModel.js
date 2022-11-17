@@ -39,10 +39,10 @@ const UserModel = mongoose.Schema({
     type: String,
     unique: true,
   },
-  _roles: [{
+  _roles: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Role",
-  }, ],
+  },
 }, {
   timestamps: true,
 })
