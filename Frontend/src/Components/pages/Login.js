@@ -10,7 +10,6 @@ import 'toastr/build/toastr.css'
 function Login() {
     const navigate = useNavigate()
     
-    const [logged, setLogged] = useState(false);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 
@@ -46,7 +45,6 @@ function Login() {
         e.preventDefault();
         axios.post("http://localhost:1000/api/auth/login", values)
         .then((success) => {
-            setLogged(true);
             setError(null)
             setSuccess(success.data.message)
             const role = success.data.user._roles.role
@@ -58,7 +56,6 @@ function Login() {
         })
         .catch((error) => {
             setError(error.response.data.message)
-            setLogged(false)
             setSuccess(null)
             if (error.response.data.message) {
                 Toaster.warning(error.response.data.message, 'warning!', {

@@ -35,7 +35,8 @@ exports.register = async (req, res, next) => {
   })
 
   try {
-    const createdUser = await user.save()
+    console.log(user);
+    user.save()
     const link = `http://localhost:1000/api/auth/ConfirmEmail/${user.verification_token}`
     nodemailer.confirmEmail(
       user.first_name,
