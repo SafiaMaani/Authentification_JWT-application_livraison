@@ -1,0 +1,32 @@
+version: "4.14"
+services:
+  backend:
+    build: ./Backend
+    ports:
+      - "1000:1000"
+    volumes:
+      - logs:/app/logs
+      - ./Backend:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb
+    networks:
+      - livraison-marhaba-net
+  frontend:
+    build: ./Frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./Frontend/src:/app/src
+    stdin_open: true
+    tty: true
+    depends_on:
+      - Backend
+    networks:
+      - livraison-marhaba-net
+volumes:
+  data:
+  logs:
+networks:
+  livraison-marhaba-net:
+    external: true
